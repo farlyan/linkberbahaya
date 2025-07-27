@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Kamu, Sayangku 🌹</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Open Sans', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      max-width: 600px;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .typing {
+      font-size: 1.2rem;
+      color: #333;
+      white-space: pre-line;
+      text-align: left;
+      margin-top: 20px;
+      border-left: 3px solid #e91e63;
+      padding-left: 15px;
+      min-height: 180px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .flower {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://i.ibb.co/dMThv1S/petal.png');
+      background-size: cover;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% {transform: translateY(0) rotate(0deg);}
+      100% {transform: translateY(120vh) rotate(360deg);}
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Maaf ya Sayangku</h1>
+  <div class="typing" id="typing-text"></div>
+</div>
+
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e3e3c8eb5.mp3?filename=calm-piano-ambient-11157.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const text = `Aku tahu, aku telah mengecewakanmu.
+Dan untuk itu, aku sungguh minta maaf dari lubuk hati yang paling dalam...
+
+Setiap kesalahan yang aku buat, bukan karena aku tak peduli...
+Tapi karena aku manusia biasa yang sedang belajar mencintaimu dengan cara terbaik.
+
+Maafkan aku, sayang...
+
+Kamu adalah rumah dari semua rasa yang aku punya.
+Dan aku nggak mau kehilangan kamu...
+
+Aku ingin memperbaiki semuanya.
+Karena kamu... segalanya. 💖`;
+
+  let i = 0;
+  const typing = document.getElementById("typing-text");
+  function type() {
+    if (i < text.length) {
+      typing.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 50);
+    }
+  }
+  type();
+
+  // Bunga jatuh
+  function createFlower() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(flower);
+
+    setTimeout(() => {
+      flower.remove();
+    }, 5000);
+  }
+
+  setInterval(createFlower, 300);
+</script>
+
+</body>
+</html>
